@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "$0"
+echo "Current Executing file name is :$0"
 OUT=$(cat file.txt | tr ' ' '\n' | sort | uniq -c)
 
 echo "$OUT"
