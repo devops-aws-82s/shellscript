@@ -38,47 +38,47 @@ fi
 }
 
 
-dnf module disable nodejs -y &>>LOG_FILE
+dnf module disable nodejs -y &>>$LOG_FILE
 VALIDATE $? "nodejs disabling"
 
-dnf module enable nodejs:20 -y &>>LOG_FILE
+dnf module enable nodejs:20 -y &>>$LOG_FILE
 VALIDATE $? "nodejs 20 version enabled"
 
-dnf install nodejs -y &>>LOG_FILE
+dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "nodejs installing"
 
-useradd expense &>>LOG_FILE
+useradd expense &>>$LOG_FILE
 VALIDATE $? "nexpense user adding"
 
-mkdir /app &>>LOG_FILE
+mkdir /app &>>$LOG_FILE
 VALIDATE $? "directory creating"
 
-curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>LOG_FILE
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
 VALIDATE $? "backend files downloading"
 
-cd /app &>>LOG_FILE
+cd /app &>>$LOG_FILE
 VALIDATE $? "directory changed"
 
-unzip /tmp/backend.zip &>>LOG_FILE
+unzip /tmp/backend.zip &>>$LOG_FILE
 VALIDATE $? "backend files unzipping"
 
-npm install &>>LOG_FILE
+npm install &>>$LOG_FILE
 VALIDATE $? "dependents installing"
 
-cp /home/ec2-user/shellscript/backend /etc/systemd/system/backend.service &>>LOG_FILE
+cp /home/ec2-user/shellscript/backend /etc/systemd/system/backend.service &>>$LOG_FILE
 VALIDATE $? "copying expense config file "
 
-mysql -h 172.31.94.50 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>LOG_FILE
+mysql -h 172.31.94.50 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "schema creating"
 
-systemctl daemon-reload &>>LOG_FILE
+systemctl daemon-reload &>>$LOG_FILE
 VALIDATE $? "deamon reloading"
 
-systemctl enable backend &>>LOG_FILE
+systemctl enable backend &>>$LOG_FILE
 VALIDATE $? "nodejs service enabling"
 
-systemctl start backend &>>LOG_FILE
+systemctl start backend &>>$LOG_FILE
 VALIDATE $? "nodejs service starting"
 
-systemctl restart backend &>>LOG_FILE
+systemctl restart backend &>>$LOG_FILE
 VALIDATE $? "nodejs restarting"
