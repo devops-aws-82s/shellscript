@@ -48,9 +48,15 @@ dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "nodejs installing"
 
 useradd expense &>>$LOG_FILE
-VALIDATE $? "nexpense user adding"
+if [ $? -eq 0 ]
+then 
+    echo -e "$Y user already added $N"
+else 
+    useradd expense 
+    VALIDATE $? "expense user adding"
+fi
 
-mkdir /app &>>$LOG_FILE
+mkdir -p /app &>>$LOG_FILE
 VALIDATE $? "directory creating"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
@@ -58,6 +64,9 @@ VALIDATE $? "backend files downloading"
 
 cd /app &>>$LOG_FILE
 VALIDATE $? "directory changed"
+
+rm -rf /app/*
+VALIDATE $? " $Y removing old files $N"
 
 unzip /tmp/backend.zip &>>$LOG_FILE
 VALIDATE $? "backend files unzipping"
@@ -68,7 +77,7 @@ VALIDATE $? "dependents installing"
 cp /home/ec2-user/shellscript/backend /etc/systemd/system/backend.service &>>$LOG_FILE
 VALIDATE $? "copying expense config file "
 
-mysql -h 172.31.94.50 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h "172.31.94.50" -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "schema creating"
 
 systemctl daemon-reload &>>$LOG_FILE
