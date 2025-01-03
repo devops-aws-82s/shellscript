@@ -11,7 +11,7 @@ echo " please confirm if you want delete below files"
 while read -r old
 do
     
-    rm -I 
+    rm -I $old
     echo "$old"
     
 done <<<$FIND
