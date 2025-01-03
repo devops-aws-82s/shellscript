@@ -1,5 +1,4 @@
 #!/bin/bash
 
-FILE=$(cat file.txt)
-
+FILE=$(cat file.txt | tr ' ' '\n' | sort | uniq -c)
 echo $FILE
