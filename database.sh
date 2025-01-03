@@ -16,7 +16,7 @@ else
 fi
 
 LOG_PATH="/home/ec2-user/expense-logs"
-FILE_NAME=$($0 | cut -d "." -f1)
+FILE_NAME=$( echo $0 | cut -d "." -f1)
 DATE=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_PATH/$FILE_NAME-$DATE.log"
 
