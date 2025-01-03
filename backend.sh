@@ -50,7 +50,7 @@ VALIDATE $? "nodejs installing"
 id expense &>>$LOG_FILE
 if [ $? -eq 0 ]
 then 
-    echo -e "$Y user already added $N"
+    echo -e "$Y expense user already added $N"
 else 
     useradd expense 
     VALIDATE $? "expense user adding"
@@ -66,7 +66,7 @@ cd /app &>>$LOG_FILE
 VALIDATE $? "directory changed"
 
 rm -rf /app/*
-VALIDATE $? " $Y removing old files $N"
+VALIDATE $? -e " $Y removing old files $N"
 
 unzip /tmp/backend.zip &>>$LOG_FILE
 VALIDATE $? "backend files unzipping"
