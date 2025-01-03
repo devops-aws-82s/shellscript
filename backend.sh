@@ -66,7 +66,7 @@ cd /app &>>$LOG_FILE
 VALIDATE $? "directory changed"
 
 rm -rf /app/*
-VALIDATE $? -e " $Y removing old files $N"
+echo -e " $Y removing old files $N"
 
 unzip /tmp/backend.zip &>>$LOG_FILE
 VALIDATE $? "backend files unzipping"
