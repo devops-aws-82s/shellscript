@@ -47,7 +47,7 @@ VALIDATE $? "nodejs 20 version enabled"
 dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "nodejs installing"
 
-useradd expense &>>$LOG_FILE
+id expense &>>$LOG_FILE
 if [ $? -eq 0 ]
 then 
     echo -e "$Y user already added $N"
@@ -77,7 +77,10 @@ VALIDATE $? "dependents installing"
 cp /home/ec2-user/shellscript/backend /etc/systemd/system/backend.service &>>$LOG_FILE
 VALIDATE $? "copying expense config file "
 
-mysql -h "172.31.94.50" -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+dnf install mysql -y &>>$LOG_FILE
+VALIDATE $? "mysql installing"
+
+mysql -h 172.31.94.50 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "schema creating"
 
 systemctl daemon-reload &>>$LOG_FILE
