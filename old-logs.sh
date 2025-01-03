@@ -14,3 +14,6 @@ do
     
     echo "$old"
 done <<<$FIND
+
+echo "please enter yes or no"
+read TYPO
