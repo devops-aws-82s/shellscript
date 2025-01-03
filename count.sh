@@ -1,4 +1,4 @@
 #!/bin/bash
 
-FILE=$(cat file.txt | tr ' ' '\n' | sort | uniq -c)
-echo $FILE
+$0
+cat file.txt | tr ' ' '\n' | sort | uniq -c)
