@@ -7,13 +7,15 @@ FIND=$(find $SOURCE -name "*.log" -mtime +14)
 #rm -rf $FIND
 
 echo "$DATE"
-echo "Below Files Will be Deleted:"
+echo " please confirm if you want delete below files"
 while read -r old
 do
     
-    
+    rm -I $old
     echo "$old"
+    
 done <<<$FIND
 
-echo "please enter yes or no"
-read TYPO
+
+
+
