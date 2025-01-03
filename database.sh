@@ -49,7 +49,7 @@ VALIDATE $? "mysql service started"
 mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE
 if [ $? -eq 0 ]
 then 
-    echo "password $Y already created $N"
+    echo -e "mysql root password $Y already created $N"
 else 
     mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE
     VALIDATE $? "mysql root password creating"
