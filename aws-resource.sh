@@ -20,7 +20,8 @@ if [ ! -d ~/.aws ]; then
 fi
 
 case $aws_service in
-    ec2
+    ec2)
         echo "Listing EC2 Instances in $aws_region"
         aws ec2 describe-instances --region $aws_region
         ;;
+esac
