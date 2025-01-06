@@ -40,7 +40,7 @@ echo " script executing at: $DATE"
 if [ -n "$FILES" ]
 then 
     echo "files found older than : $DAYS days and fikes are : $FILES"
-    ZIP_FILE="$DIST_DIR/archive-logs-$DATE.zip"
+    ZIP_FILE="$DEST_DIR/archive-logs-$DATE.zip"
     find $SOURCE_DIR -name "*.log" -mtime +$DAYS | zip -@ "$ZIP_FILE"
     if [ -f "$ZIP_FILE" ]
     then
