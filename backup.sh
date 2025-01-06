@@ -39,7 +39,7 @@ echo " script executing at: $DATE"
 
 if [ ! -f "$FILES" ]
 then 
-    echo "files found older than : $DAYS days"
+    echo "files found older than : $DAYS days and fikes are : $FILES"
 else
     echo " no files found older than $DAYS days"
     exit 1
