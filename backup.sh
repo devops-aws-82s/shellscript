@@ -18,24 +18,7 @@ LOG_FOLDER="/home/ec2-user/app-logs"
 DATE=$(date +%Y-%m-%d-%H-%M-%S)
 
 mkdir -p /home/ec2-user/app-logs
-
-if [ $? -eq 0 ]
-then
-    echo " source directory created succfully"
-else
-    echo " source directory creation failed"
-    exit 1
-fi 
-
 mkdir -p /home/ec2-user/archive-logs
-
-if [ $? -eq 0 ]
-then
-    echo " destination directory created succfully"
-else
-    echo " destination directory creation failed"
-    exit 1
-fi 
 
 
 if [ ! -d $SOURCE_DIR ]
@@ -51,5 +34,5 @@ then
 fi
 
 FILES=$(find $SOURCE_DIR -name "*.log")
-
+echo "$DATE"
 echo "files are : $FILES"
