@@ -80,7 +80,7 @@ VALIDATE $? "copying expense config file "
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "mysql installing"
 
-mysql -h 172.31.94.50 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h mysql.devopsaws.fun -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "schema creating"
 
 systemctl daemon-reload &>>$LOG_FILE
