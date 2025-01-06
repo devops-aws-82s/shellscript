@@ -45,6 +45,9 @@ then
     if [ -f "$ZIP_FILE" ]
     then
         echo -e "Successfully created zip file for files older than $DAYS"
+    else
+        echo "zip creation failed"
+    
     fi
 else
     echo " no files found older than $DAYS days"
