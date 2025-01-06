@@ -37,7 +37,7 @@ FILES=$(find $SOURCE_DIR -name "*.log" -mtime +14)
 echo " script executing at: $DATE"
 # echo "files are : $FILES"
 
-if [ -f "$FILES" ]
+if [ ! -f "$FILES" ]
 then 
     echo "files found older than : $DAYS days"
 else
