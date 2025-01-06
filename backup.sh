@@ -14,8 +14,19 @@ then
     exit 1
 fi
 
-LOG_FOLDER="/home/ec2-user/output-logs"
+LOG_FOLDER="/home/ec2-user/app-logs"
 DATE=$(date +%Y-%m-%d-%H-%M-%S)
+
+mkdir -p /home/ec2-user/app-logs
+
+if [ $? -eq 0 ]
+then
+    echo "directory created succfully"
+else
+    echo "directory creation failed"
+    exit 1
+fi 
+
 
 if [ ! -d $SOURCE_DIR ]
 then    
