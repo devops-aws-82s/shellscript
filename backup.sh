@@ -21,9 +21,19 @@ mkdir -p /home/ec2-user/app-logs
 
 if [ $? -eq 0 ]
 then
-    echo "directory created succfully"
+    echo " source directory created succfully"
 else
-    echo "directory creation failed"
+    echo " source directory creation failed"
+    exit 1
+fi 
+
+mkdir -p /home/ec2-user/archive-logs
+
+if [ $? -eq 0 ]
+then
+    echo " destination directory created succfully"
+else
+    echo " destination directory creation failed"
     exit 1
 fi 
 
