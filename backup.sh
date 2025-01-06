@@ -33,3 +33,13 @@ then
     echo " $SOURCE_DIR not exist"
     exit 1
 fi
+
+if [ ! -d $DEST_DIR ]
+then    
+    echo " $DEST_DIR not exist"
+    exit 1
+fi
+
+FILES=$(find $SOURCE_DIR -name "*.log")
+
+echo "files are : $FILES"
