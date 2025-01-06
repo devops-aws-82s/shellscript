@@ -45,6 +45,13 @@ then
     if [ -f "$ZIP_FILE" ]
     then
         echo -e "Successfully created zip file for files older than $DAYS"
+        rm -rf $FILES
+        if [ $? -eq 0 ]
+        then
+            echo "files are archived and deleted"
+        else
+            echo "no files to delete"
+        fi
     else
         echo "zip creation failed"
     
