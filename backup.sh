@@ -40,7 +40,8 @@ echo " script executing at: $DATE"
 if [ -n "$FILES" ]
 then 
     echo "files found older than : $DAYS days and fikes are : $FILES"
-    rm -rf $FILES
+    
+    # rm -rf $FILES
     if [ $? -eq 0 ]
     then
         echo "files are deleted"
